@@ -1,0 +1,104 @@
+\begin{figure*}[!t]
+    \centering
+    \scalebox{0.8}{
+    \begin{tikzpicture}
+        \begin{axis}[
+            ybar,
+            bar width=.8cm,
+            width=5.5cm,
+            height=5cm,
+            symbolic x coords={行動1, 行動2, 行動3},
+            xtick=data,
+            axis x line=bottom,
+            ymin=0,
+            axis y line=left,
+            nodes near coords={
+                \pgfmathprintnumber[fixed, precision=5]{\pgfplotspointmeta}
+            },
+            ytick=\empty,
+            enlarge x limits=0.3,
+            ylabel={行動選択確率},
+            title={データ収集方策$\pi_0$},
+            title style={yshift=.2cm},
+        ]
+        \addplot+[
+            ybar,
+            bar shift=0pt,
+            draw=black,
+        ]  coordinates {(行動1,0.80) (行動2,0.0) (行動3,0.20)};
+        \end{axis}
+
+        \begin{axis}[
+            ybar,
+            bar width=.8cm,
+            width=5.5cm,
+            height=5cm,
+            symbolic x coords={行動1, 行動2, 行動3},
+            xtick=data,
+            axis x line=bottom,
+            ymin=0,
+            axis y line=left,
+            nodes near coords={
+                \pgfmathprintnumber[fixed, precision=5]{\pgfplotspointmeta}
+            },
+            ytick=\empty,
+            yticklabel style={/pgf/number format/.cd,
+                fixed,
+                precision=3,
+                zerofill,
+                scaled ticks=false
+            },
+            enlarge x limits=0.3,
+            ylabel={行動選択確率},
+            title={評価方策$\pi$},
+            title style={yshift=.2cm},
+            at={(6cm,0)},
+        ]
+        \addplot+[
+            ybar,
+            bar shift=0pt,
+            draw=black,
+        ]  coordinates {(行動1,0.0) (行動2,0.40) (行動3,0.60)};
+        \end{axis}
+
+        \begin{axis}[
+            ybar,
+            bar width=.8cm,
+            width=5.5cm,
+            height=5cm,
+            symbolic x coords={行動1, 行動2, 行動3},
+            xtick=data,
+            axis x line=bottom,
+            ymin=0,
+            axis y line=left,
+            nodes near coords={
+                \ifnum\coordindex=1
+                    定義不能
+                \else
+                    \pgfmathprintnumber[fixed, precision=5]{\pgfplotspointmeta}
+                \fi
+            },
+            ytick=\empty,
+            yticklabel style={/pgf/number format/.cd,
+                fixed,
+                precision=3,
+                zerofill,
+                scaled ticks=false
+            },
+            enlarge x limits=0.3,
+            ylabel={重みの値},
+            title={重要度重み$\pi/\pi_0$},
+            title style={yshift=.2cm},
+            at={(12cm,0)},
+        ]
+        \addplot+[
+            ybar,
+            bar shift=0pt,
+            draw=black,
+        ] coordinates {(行動1,0.0) (行動2,0.0) (行動3,3.0)};
+        \end{axis}
+    \end{tikzpicture}
+    }
+    \caption{Assumption~\ref{ass:common-support-ips}（共通サポート）が満たされない例．}
+    \label{fig:ips-hist2}
+\end{figure*}
